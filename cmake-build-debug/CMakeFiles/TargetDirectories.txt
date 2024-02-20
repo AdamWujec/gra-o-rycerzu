@@ -1,0 +1,3 @@
+C:/Users/Adamw/CLionProjects/Gra_o_rycerzu/cmake-build-debug/CMakeFiles/Gra_o_rycerzu.dir
+C:/Users/Adamw/CLionProjects/Gra_o_rycerzu/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Adamw/CLionProjects/Gra_o_rycerzu/cmake-build-debug/CMakeFiles/rebuild_cache.dir
