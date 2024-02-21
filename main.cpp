@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <windows.h>
 using namespace std;
 
 struct rycerz {
@@ -53,6 +54,7 @@ void sklep(stanGry& stan) {
     int y;
     do {
         cout << "Witaj w sklepie, wpisz odpowiedni numer by kupic dany przedmiot" << endl;
+        Sleep(500);
         cout << "Liczba dostepnego zlota: " << Knight1.gold << endl;
         cout << "Liczba punktow hp: " << Knight1.hitpoints << endl;
         cout << "[1] aby kupic 10hp (-10g)" << endl;
@@ -62,9 +64,11 @@ void sklep(stanGry& stan) {
         cout << "[9] Dev mode " << endl;
         cout << "[0] aby opuscic sklep" << endl;
         y = wczytajWybor();
+        Sleep(1000);
         switch (y) {
             case 1: {
                 if (Knight1.gold >= 10) {
+
                     cout << "Kupiles 10hp" << endl;
                     Knight1.gold -= 10;
                     Knight1.hitpoints += 10;
@@ -72,7 +76,7 @@ void sklep(stanGry& stan) {
                     cout << "Stan obrazen: " << Knight1.damage << endl;
                     cout << "Stan zdrowia: " << Knight1.hitpoints << endl;
                 } else {
-                    cout << "Nie masz wystarczającej ilości zlota!" << endl;
+                    cout << "Nie masz wystarczajacej ilosci zlota!" << endl;
                 }
                 break;
             }
@@ -98,7 +102,7 @@ void sklep(stanGry& stan) {
                     cout << "Stan obrazen: " << Knight1.damage << endl;
                     cout << "Stan zdrowia: " << Knight1.hitpoints << endl;
                 } else {
-                    cout << "Nie masz wystarczającej ilości zlota!" << endl;
+                    cout << "Nie masz wystarczajacej ilosci zlota!" << endl;
                 }
                 break;
             }
@@ -141,6 +145,7 @@ void walka(stanGry& stan) {
     smok& Witek = stan.Witek;
 
     cout << "witaj w walce z Witkiem\n";
+    Sleep(500);
     int Hp_przed_walka = Knight1.hitpoints;
     do {
         int x;
@@ -152,6 +157,7 @@ void walka(stanGry& stan) {
         x = wczytajWybor();
         switch (x) {
             case 1: {
+                Sleep(500);
                 cout << "zabrales Witkowi "<< Knight1.damage << " ale sam straciles "<< Witek.damage << " hp" << endl;
                 Witek.hitpoints -= Knight1.damage;
                 Knight1.hitpoints -= Witek.damage;
@@ -166,6 +172,7 @@ void walka(stanGry& stan) {
     } while (Knight1.hitpoints > 0 && Witek.hitpoints > 0);
 
     if (Witek.hitpoints <= 0) {
+        Sleep(1000);
         cout << "wygrales z smokiem witkiem\n pora na kogos mocniejszego\n";
         cout << "w nagrode otrzymujesz 50 zlota\n";
         Knight1.gold += 50;
@@ -182,6 +189,7 @@ void walka2(stanGry& stan) {
     smok& Jerzyk = stan.Jerzyk;
 
     cout << "witaj w walce 2 z Jerzykiem\n";
+    Sleep(500);
     int Hp_przed_walka = Knight1.hitpoints;
     do {
         int x;
@@ -193,6 +201,7 @@ void walka2(stanGry& stan) {
         x = wczytajWybor();
         switch (x) {
             case 1: {
+                Sleep(1000);
                 cout << "zabrales Jerzykowi " << Knight1.damage << " hp ale sam straciles " << Jerzyk.damage << " hp" << endl;
                 Jerzyk.hitpoints -= Knight1.damage;
                 Knight1.hitpoints -= Jerzyk.damage;
@@ -207,6 +216,7 @@ void walka2(stanGry& stan) {
     } while (Knight1.hitpoints > 0 && Jerzyk.hitpoints > 0);
 
     if (Jerzyk.hitpoints <= 0) {
+        Sleep(1000);
         cout << "wygrales z smokiem Jerzykiem\n pora na kogos mocniejszego\n";
         cout << "w nagrode otrzymujesz ";
         Knight1.gold += 200;
@@ -222,6 +232,7 @@ void walka3(stanGry& stan) {
     rycerz &Knight1 = stan.Knight1;
     smok &Adam = stan.Adam;
     cout << "witaj w walce 3 z Adamem\n";
+    Sleep(1000);
     int Hp_przed_walka = Knight1.hitpoints;
     do {
         int x;
@@ -248,6 +259,7 @@ void walka3(stanGry& stan) {
     } while (Knight1.hitpoints > 0 && Adam.hitpoints > 0);
 
     if (Adam.hitpoints <= 0) {
+        Sleep(1000);
         cout << "wygrales z smokiem Adamem\n pora na kogos mocniejszego\n";
         cout << "w nagrode otrzymujesz ";
         Knight1.gold += 250;
@@ -265,6 +277,7 @@ void walka4(stanGry& stan) {
     smok &Olek = stan.Olek;
 
     cout << "witaj w walce 4 walce z Olkiem\n";
+    Sleep(1000);
     int Hp_przed_walka = Knight1.hitpoints;
     do {
         int x;
@@ -276,6 +289,7 @@ void walka4(stanGry& stan) {
         x = wczytajWybor();
         switch (x) {
             case 1: {
+                Sleep(1000);
                 cout << "zabrales Olkowi " << Knight1.damage << " hp ale sam straciles " << Olek.damage << " hp"
                      << endl;
                 Olek.hitpoints -= Knight1.damage;
