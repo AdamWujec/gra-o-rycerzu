@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cctype>
 using namespace std;
 
 struct rycerz {
@@ -30,6 +30,19 @@ struct stanGry {
         Adam.hitpoints = 500;
     }
 };
+bool czyLiczba(char znak) {
+    return isdigit(znak) != 0; // isdigit zwraca wartość różną od zera, jeśli znak jest cyfrą
+}
+int wczytajWybor() {
+    char x;
+    cout << "Wybierz opcje: ";
+    cin >> x;
+    while (!czyLiczba(x)) { // Dopóki wprowadzony znak nie jest liczbą
+        cout << "Niepoprawny wybor. Wprowadz liczbe: ";
+        cin >> x;
+    }
+    return x - '0'; // Konwersja znaku na cyfrę (char na int)
+}
 
 void sklep(stanGry& stan) {
     rycerz& Knight1 = stan.Knight1;
@@ -45,7 +58,7 @@ void sklep(stanGry& stan) {
         cout << "[4] aby kupic +25dmg (-50g)" << endl;
         cout << "[9] Dev mode " << endl;
         cout << "[0] aby opuscic sklep" << endl;
-        cin >> x;
+        x = wczytajWybor();
         switch (x) {
             case 1: {
                 if (Knight1.gold >= 10) {
@@ -132,7 +145,7 @@ int walka(stanGry& stan) {
         cout << "hp smoka " << Witek.hitpoints << endl;
         cout << "aby zadac obrazenia wpisz 1\n";
         cout << "aby sie poddac wpisz 2\n";
-        cin >> x;
+        x = wczytajWybor();
         switch (x) {
             case 1: {
                 cout << "zabrales Witkowi "<< Knight1.damage << " ale sam straciles "<< Witek.damage << " hp" << endl;
@@ -174,7 +187,7 @@ int walka2(stanGry& stan) {
         cout << "hp smoka " << Jerzyk.hitpoints << endl;
         cout << "aby zadac obrazenia wpisz 1\n";
         cout << "aby sie poddac wpisz 2\n";
-        cin >> x;
+        x = wczytajWybor();
         switch (x) {
             case 1: {
                 cout << "zabrales Jerzykowi " << Knight1.damage << " hp ale sam straciles " << Jerzyk.damage << " hp" << endl;
@@ -216,7 +229,7 @@ int walka3(stanGry& stan) {
         cout << "hp smoka " << Adam.hitpoints << endl;
         cout << "aby zadac obrazenia wpisz 1\n";
         cout << "aby sie poddac wpisz 2\n";
-        cin >> x;
+        x = wczytajWybor();
         switch (x) {
             case 1: {
                 cout << "zabrales Adamowi " << Knight1.damage << " hp ale sam straciles " << Adam.damage << " hp"
