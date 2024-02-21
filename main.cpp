@@ -114,6 +114,7 @@ int walka(stanGry& stan) {
     smok& Witek = stan.Witek;
 
     cout << "witaj w walce z Witkiem\n";
+    int Hp_przed_walka = Knight1.hitpoints;
     do {
         int x;
         cout << "twoje hp = " << Knight1.hitpoints << endl;
@@ -142,8 +143,8 @@ int walka(stanGry& stan) {
         cout << "w nagrode otrzymujesz 50 zlota\n";
         Knight1.gold += 50;
         cout << "masz teraz " << Knight1.gold << " zlota\n";
-        Knight1.hitpoints += 100;
-        cout<< " dostales 100hp"<<endl;
+        Knight1.hitpoints = Hp_przed_walka;
+        cout<< "odzyskales swoje hp"<<endl;
         sklep(stan);
     } else
         cout << "niestety musisz podejsc do gry jeszcze raz\n";
@@ -155,6 +156,7 @@ int walka2(stanGry& stan) {
     smok& Jerzyk = stan.Jerzyk;
 
     cout << "witaj w walce 2 z Jerzykiem\n";
+    int Hp_przed_walka = Knight1.hitpoints;
     do {
         int x;
         cout << "twoje hp = " << Knight1.hitpoints << endl;
@@ -183,8 +185,8 @@ int walka2(stanGry& stan) {
         cout << "w nagrode otrzymujesz ";
         Knight1.gold += 100;
         cout << Knight1.gold << " zlota\n";
-        Knight1.hitpoints += 100;
-        cout<<"dostales 100hp"<<endl;
+        Knight1.hitpoints = Hp_przed_walka;
+        cout<<"odzyskales swoje hp"<<endl;
         sklep(stan);
     } else
         cout << "niestety musisz podejsc do gry jeszcze raz\n";
@@ -196,6 +198,7 @@ int walka3(stanGry& stan) {
     smok &Adam = stan.Adam;
 
     cout << "witaj w walce 3 z Adamem\n";
+    int Hp_przed_walka = Knight1.hitpoints;
     do {
         int x;
         cout << "twoje hp = " << Knight1.hitpoints << endl;
@@ -225,12 +228,13 @@ int walka3(stanGry& stan) {
         cout << "w nagrode otrzymujesz ";
         Knight1.gold += 150;
         cout << Knight1.gold << " zlota\n";
-        Knight1.hitpoints += 100;
-        cout << "dostales 100hp" << endl;
+        Knight1.hitpoints = Hp_przed_walka;
+        cout << "odzyskales swoje hp" << endl;
         sklep(stan);
     } else
-        cout << "niestety musisz podejsc do gry jeszcze raz\n";
-    return 0;
+
+        cout << "niestety smok Adam jest zbyt potezny\n";
+
 }
 int main() {
     stanGry aktualnyStanGry;
