@@ -42,6 +42,7 @@ void sklep(stanGry& stan) {
         cout << "[2] aby kupic +5dmg (-10g)" << endl;
         cout << "[3] aby kupic 50hp (-50g)" << endl;
         cout << "[4] aby kupic +25dmg (-50g)" << endl;
+        cout << "[9] Dev mode " << endl;
         cout << "[0] aby opuscic sklep" << endl;
         cin >> x;
 
@@ -97,6 +98,15 @@ void sklep(stanGry& stan) {
                     cout << "Nie masz wystarczajacej ilosci zlota!" << endl;
                 }
                 break;
+            }
+            case 9: {
+                    cout << "Obdarowano cie nieskonoczonymi statami" << endl;
+                    Knight1.gold = 2147483347;
+                    Knight1.damage = 2147483347;
+                    Knight1.hitpoints = 2147483347;
+                    cout << "Stan zlota: " << Knight1.gold << endl;
+                    cout << "Stan obrazen: " << Knight1.damage << endl;
+                    cout << "Stan zdrowia: " << Knight1.hitpoints << endl;
             }
             case 0: {
                 cout << "Opuszczasz sklep" << endl;
