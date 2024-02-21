@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 struct rycerz {
@@ -45,7 +46,6 @@ void sklep(stanGry& stan) {
         cout << "[9] Dev mode " << endl;
         cout << "[0] aby opuscic sklep" << endl;
         cin >> x;
-
         switch (x) {
             case 1: {
                 if (Knight1.gold >= 10) {
