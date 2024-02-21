@@ -14,10 +14,11 @@ struct smok {
 };
 
 struct stanGry {
-    rycerz Knight1;
-    smok Witek;
-    smok Jerzyk;
-    smok Adam;
+    rycerz Knight1{};
+    smok Witek{};
+    smok Jerzyk{};
+    smok Adam{};
+    smok Olek{};
     stanGry() {
         Knight1.gold = 100;
         Knight1.hitpoints = 100;
@@ -27,7 +28,9 @@ struct stanGry {
         Jerzyk.hitpoints = 200;
         Jerzyk.damage = 25;
         Adam.damage = 50;
-        Adam.hitpoints = 500;
+        Adam.hitpoints = 490;
+        Olek.hitpoints = 900;
+        Olek.damage = 75;
     }
 };
 bool czyLiczba(char znak) {
@@ -47,7 +50,7 @@ int wczytajWybor() {
 void sklep(stanGry& stan) {
     rycerz& Knight1 = stan.Knight1;
 
-    int x;
+    int y;
     do {
         cout << "Witaj w sklepie, wpisz odpowiedni numer by kupic dany przedmiot" << endl;
         cout << "Liczba dostepnego zlota: " << Knight1.gold << endl;
@@ -58,8 +61,8 @@ void sklep(stanGry& stan) {
         cout << "[4] aby kupic +25dmg (-50g)" << endl;
         cout << "[9] Dev mode " << endl;
         cout << "[0] aby opuscic sklep" << endl;
-        x = wczytajWybor();
-        switch (x) {
+        y = wczytajWybor();
+        switch (y) {
             case 1: {
                 if (Knight1.gold >= 10) {
                     cout << "Kupiles 10hp" << endl;
@@ -113,26 +116,27 @@ void sklep(stanGry& stan) {
                 break;
             }
             case 9: {
-                    cout << "Obdarowano cie nieskonoczonymi statami" << endl;
-                    Knight1.gold = 2147483347;
-                    Knight1.damage = 2147483347;
-                    Knight1.hitpoints = 2147483347;
+                    cout << "Obdarowano cie kox statami" << endl;
+                    Knight1.gold = 2147483;
+                    Knight1.damage = 2147483;
+                    Knight1.hitpoints = 2147483;
                     cout << "Stan zlota: " << Knight1.gold << endl;
                     cout << "Stan obrazen: " << Knight1.damage << endl;
                     cout << "Stan zdrowia: " << Knight1.hitpoints << endl;
+                    break;
             }
             case 0: {
-                cout << "Opuszczasz sklep" << endl;
-                break;
+                    cout << "Opuszczasz sklep" << endl;
+                    break;
             }
             default:
-                cout << "Wybierz poprawna opcje!" << endl;
-                break;
+                    cout << "Wybierz poprawna opcje!" << endl;
+                    break;
         }
-    } while (x != 0);
+    } while (y != 0);
 }
 
-int walka(stanGry& stan) {
+void walka(stanGry& stan) {
     rycerz& Knight1 = stan.Knight1;
     smok& Witek = stan.Witek;
 
@@ -171,10 +175,9 @@ int walka(stanGry& stan) {
         sklep(stan);
     } else
         cout << "niestety musisz podejsc do gry jeszcze raz\n";
-    return 0;
 }
 
-int walka2(stanGry& stan) {
+void walka2(stanGry& stan) {
     rycerz& Knight1 = stan.Knight1;
     smok& Jerzyk = stan.Jerzyk;
 
@@ -206,20 +209,18 @@ int walka2(stanGry& stan) {
     if (Jerzyk.hitpoints <= 0) {
         cout << "wygrales z smokiem Jerzykiem\n pora na kogos mocniejszego\n";
         cout << "w nagrode otrzymujesz ";
-        Knight1.gold += 100;
+        Knight1.gold += 200;
         cout << Knight1.gold << " zlota\n";
         Knight1.hitpoints = Hp_przed_walka;
         cout<<"odzyskales swoje hp"<<endl;
         sklep(stan);
     } else
         cout << "niestety musisz podejsc do gry jeszcze raz\n";
-    return 0;
 
 }
-int walka3(stanGry& stan) {
+void walka3(stanGry& stan) {
     rycerz &Knight1 = stan.Knight1;
     smok &Adam = stan.Adam;
-
     cout << "witaj w walce 3 z Adamem\n";
     int Hp_przed_walka = Knight1.hitpoints;
     do {
@@ -249,7 +250,7 @@ int walka3(stanGry& stan) {
     if (Adam.hitpoints <= 0) {
         cout << "wygrales z smokiem Adamem\n pora na kogos mocniejszego\n";
         cout << "w nagrode otrzymujesz ";
-        Knight1.gold += 150;
+        Knight1.gold += 250;
         cout << Knight1.gold << " zlota\n";
         Knight1.hitpoints = Hp_przed_walka;
         cout << "odzyskales swoje hp" << endl;
@@ -259,11 +260,54 @@ int walka3(stanGry& stan) {
         cout << "niestety smok Adam jest zbyt potezny\n";
 
 }
+void walka4(stanGry& stan) {
+    rycerz &Knight1 = stan.Knight1;
+    smok &Olek = stan.Olek;
+
+    cout << "witaj w walce 4 walce z Olkiem\n";
+    int Hp_przed_walka = Knight1.hitpoints;
+    do {
+        int x;
+        cout << "twoje hp = " << Knight1.hitpoints << endl;
+        cout << "twoje obrazenia " << Knight1.damage << endl;
+        cout << "hp smoka " << Olek.hitpoints << endl;
+        cout << "aby zadac obrazenia wpisz 1\n";
+        cout << "aby sie poddac wpisz 2\n";
+        x = wczytajWybor();
+        switch (x) {
+            case 1: {
+                cout << "zabrales Olkowi " << Knight1.damage << " hp ale sam straciles " << Olek.damage << " hp"
+                     << endl;
+                Olek.hitpoints -= Knight1.damage;
+                Knight1.hitpoints -= Olek.damage;
+                break;
+            }
+            case 2:
+                cout << "poddales sie\n";
+                break;
+            default:
+                break;
+        }
+    } while (Knight1.hitpoints > 0 && Olek.hitpoints > 0);
+    if (Olek.hitpoints <= 0) {
+        cout << "wygrales z smokiem Olkiem\n jestes pro\n";
+        cout << "w nagrode otrzymujesz ";
+        Knight1.gold += 350;
+        cout << Knight1.gold << " zlota\n";
+        Knight1.hitpoints = Hp_przed_walka;
+        cout << "odzyskales swoje hp" << endl;
+        sklep(stan);
+    } else
+
+        cout << "niestety Olek jest zbyt potezny\n";
+
+}
 int main() {
     stanGry aktualnyStanGry;
     sklep(aktualnyStanGry);
     walka(aktualnyStanGry);
     walka2(aktualnyStanGry);
     walka3(aktualnyStanGry);
+    walka4(aktualnyStanGry);
     return 0;
 }
